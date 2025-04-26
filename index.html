@@ -45,7 +45,7 @@
           </div>
           <div class="profile-image-container" data-scroll>
             <img
-              src="elzgtg.jpg"
+              src="img/elzgtg.jpg"
               alt="Profile Photo"
               class="profile-image"
             />
@@ -91,21 +91,21 @@
         <h2 class="section-title" data-scroll>Featured Work</h2>
         <div class="portfolio-grid">
           <div class="portfolio-card" data-scroll>
-            <img src="siakad1.png" alt="Project 1" />
+            <img src="img/siakad1.png" alt="Project 1" />
             <div class="portfolio-overlay">
               <h3>Sistem Akademik</h3>
               <p>Website</p>
             </div>
           </div>
           <div class="portfolio-card" data-scroll>
-            <img src="kost.png" alt="Project 2" />
+            <img src="img/kost.png" alt="Project 2" />
             <div class="portfolio-overlay">
               <h3>Maddog Kost</h3>
               <p>Website</p>
             </div>
           </div>
           <div class="portfolio-card" data-scroll>
-            <img src="lelang.png" alt="Project 3" />
+            <img src="img/lelang.png" alt="Project 3" />
             <div class="portfolio-overlay">
               <h3>Turen Lelang</h3>
               <p>Website</p>
@@ -173,6 +173,7 @@
       });
 
       const scrollElements = document.querySelectorAll("[data-scroll]");
+
       const elementInView = (el, offset = 0) => {
         const elementTop = el.getBoundingClientRect().top;
         return (
@@ -239,34 +240,34 @@
           navLinks.classList.remove("active");
         });
       });
-      document
-        .getElementById("contact-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); 
-
-          const form = event.target;
-          const formData = new FormData(form);
-
-          const name = formData.get("name");
-          const email = formData.get("email");
-          const message = formData.get("message");
-
-          emailjs
-            .send("service_qtqq71m", "template_nog7vmq", {
-              name: name,
-              email: email,
-              message: message,
-            })
-            .then(function (response) {
-              console.log("Success:", response);
-              alert("Message sent successfully!");
-              form.reset();
-            })
-            .catch(function (error) {
-              console.log("Error:", error);
-              alert("Failed to send message.");
-            });
-        });
     </script>
+    <script>
+      // EmailJS Script
+      document.getElementById("contact-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+    
+        const form = event.target;
+        const formData = new FormData(form);
+    
+        const name = formData.get("name");
+        const email = formData.get("email");
+        const message = formData.get("message");
+    
+        emailjs.send("service_qtqq71m", "template_nog7vmq", {
+          name: name,
+          email: email,
+          message: message,
+        })
+        .then(function (response) {
+          console.log("Success:", response);
+          alert("Message sent successfully!");
+          form.reset();
+        })
+        .catch(function (error) {
+          console.log("Error:", error);
+          alert("Failed to send message.");
+        });
+      });
+    </script>    
   </body>
 </html>
