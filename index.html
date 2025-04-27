@@ -4,15 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alnaaelz</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-    ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
       (function () {
         emailjs.init({
@@ -24,13 +18,18 @@
 
   <body>
     <nav class="navbar">
-      <div class="container nav-content">
-        <div class="logo">elz</div>
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#portfolio">Work</a>
-          <a href="#contact">Contact</a>
+      <div class="navbar-pattern" id="textPattern"></div>
+      <div class="container">
+        <div class="centered-nav">
+          <div class="running-logo-container">
+            <div class="running-logo">alnaaelz</div>
+          </div>          
+          <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Work</a>
+            <a href="#contact">Contact</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -43,13 +42,11 @@
             <p>Crafting digital experiences that leave lasting impressions</p>
             <a href="#contact" class="submit-btn">Let's Talk</a>
           </div>
-          <div class="profile-image-container" data-scroll>
-            <img
-              src="elzgtg.jpg"
-              alt="Profile Photo"
-              class="profile-image"
-            />
-          </div>
+          <div class="profile-image-wrapper" data-scroll>
+            <div class="profile-image-container">
+              <img src="elzgtg.jpg" alt="Profile Photo" class="profile-image" />
+            </div>
+          </div>          
         </div>
       </div>
     </section>
@@ -61,26 +58,17 @@
           <div class="service-card" data-scroll>
             <i class="fas fa-code"></i>
             <h3>Web Development</h3>
-            <p>
-              Building responsive and performant websites using modern
-              technologies and best practices.
-            </p>
+            <p>Building responsive and performant websites using modern technologies and best practices.</p>
           </div>
           <div class="service-card" data-scroll>
             <i class="fas fa-chart-line"></i>
             <h3>Data Science</h3>
-            <p>
-              Leveraging data to uncover insights, drive decision-making, and
-              build predictive models for better business outcomes.
-            </p>
+            <p>Leveraging data to uncover insights, drive decision-making, and build predictive models for better business outcomes.</p>
           </div>
           <div class="service-card" data-scroll>
             <i class="fas fa-brain"></i>
             <h3>Machine Learning</h3>
-            <p>
-              Building intelligent models and systems to solve complex problems
-              using AI and machine learning techniques.
-            </p>
+            <p>Building intelligent models and systems to solve complex problems using AI and machine learning techniques.</p>
           </div>
         </div>
       </div>
@@ -122,26 +110,10 @@
           <div class="contact-form" data-scroll>
             <form id="contact-form">
               <input type="text" name="name" placeholder="Your Name" required />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Your Message"
-                required
-              ></textarea>
+              <input type="email" name="email" placeholder="Your Email" required />
+              <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
               <button type="submit" class="submit-btn">Send Message</button>
             </form>
-          </div>
-          <div class="contact-info glass" data-scroll>
-            <h3>Contact Information</h3>
-            <p><i class="fas fa-envelope"></i> alnaaelz@gmail.com</p>
-            <p><i class="fas fa-phone"></i> +62 851 5522 9427</p>
-            <p><i class="fas fa-map-marker-alt"></i> Jawa Tengah, Indonesia</p>
           </div>
         </div>
       </div>
@@ -151,12 +123,8 @@
       <div class="container">
         <div class="social-links">
           <a href="https://github.com/xyzelz"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/elzstudent/"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="https://www.instagram.com/alnaaelz/"
-            ><i class="fab fa-instagram"></i
-          ></a>
+          <a href="https://www.linkedin.com/in/elzstudent/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/alnaaelz/"><i class="fab fa-instagram"></i></a>
         </div>
         <p class="text-center">&copy; 2024 Alnaaelz Portfolio.</p>
       </div>
@@ -173,13 +141,11 @@
       });
 
       const scrollElements = document.querySelectorAll("[data-scroll]");
-
       const elementInView = (el, offset = 0) => {
         const elementTop = el.getBoundingClientRect().top;
         return (
           elementTop <=
-          (window.innerHeight || document.documentElement.clientHeight) *
-            (1 - offset)
+          (window.innerHeight || document.documentElement.clientHeight) * (1 - offset)
         );
       };
 
@@ -201,13 +167,8 @@
         });
       };
 
-      window.addEventListener("scroll", () => {
-        handleScrollAnimation();
-      });
-
-      window.addEventListener("load", () => {
-        handleScrollAnimation();
-      });
+      window.addEventListener("scroll", handleScrollAnimation);
+      window.addEventListener("load", handleScrollAnimation);
 
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
@@ -225,7 +186,7 @@
       const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
       const navLinks = document.querySelector(".nav-links");
 
-      mobileMenuBtn.addEventListener("click", () => {
+      mobileMenuBtn?.addEventListener("click", () => {
         navLinks.classList.toggle("active");
       });
 
@@ -240,34 +201,64 @@
           navLinks.classList.remove("active");
         });
       });
-    </script>
-    <script>
-      // EmailJS Script
-      document.getElementById("contact-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-    
-        const form = event.target;
-        const formData = new FormData(form);
-    
-        const name = formData.get("name");
-        const email = formData.get("email");
-        const message = formData.get("message");
-    
-        emailjs.send("service_qtqq71m", "template_nog7vmq", {
-          name: name,
-          email: email,
-          message: message,
-        })
-        .then(function (response) {
-          console.log("Success:", response);
-          alert("Message sent successfully!");
-          form.reset();
-        })
-        .catch(function (error) {
-          console.log("Error:", error);
-          alert("Failed to send message.");
-        });
+
+      // SEMUA SCRIPT DIBAWAH DITARUH DALAM SATU DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Typing animation for hero text
+        const heroTitle = document.querySelector(".hero-content h1");
+        const originalText = heroTitle.innerHTML;
+        heroTitle.innerHTML = "";
+
+        let i = 0;
+        const typeWriter = () => {
+          if (i < originalText.length) {
+            if (originalText.substring(i, i + 4) === "<br>") {
+              heroTitle.innerHTML += "<br>";
+              i += 4;
+            } else {
+              heroTitle.innerHTML += originalText.charAt(i);
+              i++;
+            }
+            setTimeout(typeWriter, 75 + Math.random() * 50);
+          } else {
+            const cursor = document.createElement("span");
+            cursor.className = "typing-cursor";
+            cursor.innerHTML = "|";
+            heroTitle.appendChild(cursor);
+          }
+        };
+
+        setTimeout(typeWriter, 500);
+
+        // EmailJS Form Submission (DIBENERIN DISINI)
+        const contactForm = document.getElementById("contact-form");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(contactForm);
+
+            const name = formData.get("name");
+            const email = formData.get("email");
+            const message = formData.get("message");
+
+            emailjs
+              .send("service_qtqq71m", "template_nog7vmq", {
+                name: name,
+                email: email,
+                message: message,
+              })
+              .then(function (response) {
+                console.log("Success:", response);
+                alert("Message sent successfully!");
+                contactForm.reset();
+              })
+              .catch(function (error) {
+                console.log("Error:", error);
+                alert("Failed to send message.");
+              });
+          });
+        }
       });
-    </script>    
+    </script>
   </body>
 </html>
