@@ -41,6 +41,46 @@
       </div>
     </nav>
 
+    <div class="dynamic-island">
+      <div class="island-container island-compact" id="dynamicIsland">
+        <div class="island-logo" id="islandLogo">
+          <span class="running-text">alnaaelz</span>
+        </div>
+        <div class="island-content" id="islandContent" style="display: none">
+          <div class="island-header">
+            <span class="island-title">Navigation</span>
+            <button class="close-btn" id="closeBtn">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <nav class="island-nav">
+            <div class="island-nav-links">
+              <a href="#home" class="island-nav-link active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+              <a href="#skills" class="island-nav-link">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
+              </a>
+              <a href="#services" class="island-nav-link">
+                <i class="fas fa-briefcase"></i>
+                <span>Services</span>
+              </a>
+              <a href="#portfolio" class="island-nav-link">
+                <i class="fas fa-folder"></i>
+                <span>Work</span>
+              </a>
+              <a href="#contact" class="island-nav-link">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
     <section id="home" class="hero">
       <div class="container">
         <div class="hero-container">
@@ -394,6 +434,86 @@
               });
           });
         }
+      });
+
+      const dynamicIsland = document.getElementById("dynamicIsland");
+      const islandContent = document.getElementById("islandContent");
+      const closeBtn = document.getElementById("closeBtn");
+      let isExpanded = false;
+
+      dynamicIsland.addEventListener("click", () => {
+        if (!isExpanded) {
+          expandIsland();
+        }
+      });
+
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        collapseIsland();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (isExpanded && !dynamicIsland.contains(e.target)) {
+          collapseIsland();
+        }
+      });
+
+      function expandIsland() {
+        isExpanded = true;
+        dynamicIsland.classList.remove("island-compact");
+        dynamicIsland.classList.add("island-expanded");
+
+        setTimeout(() => {
+          islandContent.style.display = "block";
+        }, 200);
+      }
+
+      function collapseIsland() {
+        isExpanded = false;
+        islandContent.style.display = "none";
+
+        dynamicIsland.classList.remove("island-expanded");
+        dynamicIsland.classList.add("island-compact");
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isExpanded) {
+          collapseIsland();
+        }
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            if (isExpanded) {
+              setTimeout(() => collapseIsland(), 300);
+            }
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const islandLogo = document.querySelector(".island-logo");
+        const dynamicIsland = document.getElementById("dynamicIsland");
+
+        const originalExpandIsland = expandIsland;
+        expandIsland = function () {
+          originalExpandIsland();
+          islandLogo.style.display = "none";
+        };
+
+        const originalCollapseIsland = collapseIsland;
+        collapseIsland = function () {
+          originalCollapseIsland();
+          islandLogo.style.display = "flex";
+        };
       });
     </script>
   </body>
